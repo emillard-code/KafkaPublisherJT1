@@ -18,6 +18,8 @@ public class KafkaPublisherConfig {
     @Bean
     public ProducerFactory<String, Object> producerFactory() {
 
+        // Default port is 9092 and this is unnecessary, but you can change value in the config here.
+        // The following two configs decide the data types of the key/value pair that's published.
         Map<String, Object> configs = new HashMap<>();
         configs.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         configs.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
