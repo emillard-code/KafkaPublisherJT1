@@ -1,5 +1,6 @@
 package com.project;
 
+import com.project.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,6 +22,13 @@ public class KafkaPublisherJt1Application {
     public String publishMessage(@PathVariable String name) {
         template.send(topic, "Hi " + name + " Welcome to java techie");
         return "Data published";
+    }
+
+    @GetMapping("/publishJson")
+    public String publishMessage() {
+        User user = new User(2532, "User88", new String[] { "Bangalore", "BTM", "house 90" });
+        template.send(topic, user);
+        return "Json Data published";
     }
 
     public static void main(String[] args) {
