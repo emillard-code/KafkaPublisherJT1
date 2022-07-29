@@ -13,22 +13,24 @@ public class KafkaController {
     @Autowired
     private KafkaTemplate<String, Object> template;
 
-    private final String topic = "javatechie";
+    private final String topic = "kafka-topic";
 
-    @GetMapping("/publish/{name}")
-    public String publishMessage(@PathVariable String name) {
+    @GetMapping("/publish/{word}")
+    public String publishMessage(@PathVariable String word) {
 
-        template.send(topic, "Hi " + name + " Welcome to java techie");
-        return "Data published";
+        template.send(topic, "Kafka Message Sent: " + word);
+
+        return "String Data Published";
 
     }
 
     @GetMapping("/publishJson")
     public String publishMessage() {
 
-        User user = new User(2532, "User88", new String[] { "Bangalore", "BTM", "house 90" });
+        User user = new User(1000, "Adam", new String[] { "420 Rainier Drive", "Seattle", "Washington" });
         template.send(topic, user);
-        return "Json Data published";
+
+        return "Json Data Published";
 
     }
 
