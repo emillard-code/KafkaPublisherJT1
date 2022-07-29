@@ -27,5 +27,5 @@ public class KafkaController {
         template.send(topic, user);
         return "Json Data published";
     }
-    
+
 }
